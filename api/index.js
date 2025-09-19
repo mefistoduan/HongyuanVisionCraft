@@ -1,61 +1,42 @@
 'use strict';
 
 // Adapted for Vercel Serverless Functions
-let NestFactory;
-let AppModule;
+const path = require('path');
 let cachedApp = null;
 
 // 尝试动态导入所需模块
 async function loadModules() {
   try {
-    // 首先尝试从已构建的JavaScript文件导入
-    const nestCore = await import('@nestjs/core');
-    NestFactory = nestCore.NestFactory;
+    // 使用require来导入@nestjs/core，避免ESM导入问题
+    const { NestFactory } = require('@nestjs/core');
     
-    try {
-      // 尝试从dist目录导入（生产环境）
-      const appModule = await import('../dist/app.module');
-      AppModule = appModule.AppModule;
-    } catch (distError) {
-      console.log('Failed to import from dist, trying to import TypeScript source...');
-      // 如果dist目录不存在，尝试直接导入TypeScript源代码（构建过程中）
-      try {
-        // 设置环境变量以支持TypeScript导入
-        process.env.TS_NODE_COMPILER_OPTIONS = JSON.stringify({
-          "module": "commonjs",
-          "esModuleInterop": true
-        });
-        
-        // 动态导入ts-node以支持TypeScript
-        await import('ts-node/register');
-        
-        // 导入TypeScript源代码
-        const appModule = await import('../src/app.module');
-        AppModule = appModule.AppModule;
-      } catch (srcError) {
-        console.error('Failed to import modules:', srcError);
-        throw new Error('Failed to load required modules');
-      }
-    }
+    // 获取dist/app.module.js的绝对路径
+    const distAppModulePath = path.join(__dirname, '../dist/app.module.js');
+    
+    // 使用require来导入已构建的模块
+    const { AppModule } = require(distAppModulePath);
+    
+    return { NestFactory, AppModule };
   } catch (error) {
     console.error('Error loading modules:', error);
-    throw error;
+    throw new Error(`Failed to load required modules: ${error.message}`);
   }
 }
 
 // Initialize the NestJS application
 async function initializeApp() {
   if (!cachedApp) {
-    // 确保模块已加载
-    if (!NestFactory || !AppModule) {
-      await loadModules();
-    }
+    // 加载必要的模块
+    const { NestFactory, AppModule } = await loadModules();
     
     const app = await NestFactory.create(AppModule);
+    
     // Disable NestJS built-in logger to prevent log flooding
     app.useLogger(false);
+    
     // Don't call app.listen() in serverless environment
     await app.init();
+    
     cachedApp = app;
   }
   return cachedApp;
@@ -68,14 +49,26 @@ module.exports = async (req, res) => {
     const app = await initializeApp();
     
     // Handle the request using NestJS's HTTP adapter
-    // This will route the request to the appropriate controller
     const httpAdapter = app.getHttpAdapter();
+    
+    // 获取Express服务器实例
     const server = httpAdapter.getInstance();
     
-    // Pass the request to the Express server
+    // 使用标准的Express处理方式
     server(req, res);
   } catch (error) {
     console.error('Error handling request:', error);
-    res.status(500).send('Internal Server Error');
+    
+    // Send more detailed error response for debugging
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: 'Internal Server Error',
+        message: error.message || 'Unknown error',
+        request: {
+          method: req.method,
+          url: req.url
+        }
+      });
+    }
   }
 };
