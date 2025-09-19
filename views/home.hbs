@@ -1,0 +1,110 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1>Smart Rendering, Local Empowerment, Precisely Presenting Every Design Detail</h1>
+    <p class="subheading">Transforming architectural visualization with cutting-edge AI technology</p>
+    <div class="cta-buttons">
+      <a href="/contact" class="btn secondary">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<section class="services-preview">
+  <div class="container">
+    <h2>Our Core Services</h2>
+    <p>Leveraging advanced computer vision and generative AI technology to provide architects, designers, and developers with efficient, precise image generation and enhancement solutions</p>
+    
+    <div class="services-grid">
+      {{#each services}}<div class="service-card">
+        <div class="service-icon">{{@index}}</div>
+        <h3>{{this.name}}</h3>
+        <p>{{this.description}}</p>
+      </div>{{/each}}
+    </div>
+  </div>
+</section>
+
+<section class="image2image">
+  <div class="container">
+    <h2>Image to Image Comparison</h2>
+    <p>Drag the slider to compare the original image with the AI-enhanced version.</p>
+    
+    <!-- 图像对比滑块容器 -->
+    <div class="image-compare-wrapper">
+      <div class="image-compare-container">
+        <div class="image-compare-slider">
+          <!-- 左侧图片（处理前） -->
+          <div class="image-compare-before">
+            <img src="/images/image10.png" alt="Before AI Enhancement" class="compare-img">
+            <div class="image-label before-label">Original</div>
+          </div>
+          
+          <!-- 右侧图片（处理后） -->
+          <div class="image-compare-after">
+            <img src="/images/image11.png" alt="After AI Enhancement" class="compare-img">
+            <div class="image-label after-label">AI Enhanced</div>
+          </div>
+          
+          <!-- 滑块控制 -->
+          <div class="image-compare-handle">
+            <div class="handle-icon"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 第二个对比示例 -->
+      <div class="image-compare-container">
+        <div class="image-compare-slider">
+          <div class="image-compare-before">
+            <img src="/images/image14.png" alt="Before AI Enhancement" class="compare-img">
+            <div class="image-label before-label">Original</div>
+          </div>
+          
+          <div class="image-compare-after">
+            <img src="/images/image17.png" alt="After AI Enhancement" class="compare-img">
+            <div class="image-label after-label">AI Enhanced</div>
+          </div>
+          
+          <div class="image-compare-handle">
+            <div class="handle-icon"></div>
+          </div>
+        </div>
+      </div>
+      {{!-- 3 --}}
+      <div class="image-compare-container">
+        <div class="image-compare-slider">
+          <div class="image-compare-before">
+            <img src="/images/image18.png" alt="Before AI Enhancement" class="compare-img">
+            <div class="image-label before-label">Original</div>
+          </div>
+          
+          <div class="image-compare-after">
+            <img src="/images/image21.png" alt="After AI Enhancement" class="compare-img">
+            <div class="image-label after-label">AI Enhanced</div>
+          </div>
+          
+          <div class="image-compare-handle">
+            <div class="handle-icon"></div>
+          </div>
+        </div>
+      </div>
+      {{!-- 4 --}}
+      <div class="image-compare-container">
+        <div class="image-compare-slider">
+          <div class="image-compare-before">
+            <img src="/images/image27.png" alt="Before AI Enhancement" class="compare-img">
+            <div class="image-label before-label">Original</div>
+          </div>
+          
+          <div class="image-compare-after">
+            <img src="/images/image30.png" alt="After AI Enhancement" class="compare-img">
+            <div class="image-label after-label">AI Enhanced</div>
+          </div>
+          
+          <div class="image-compare-handle">
+            <div class="handle-icon"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

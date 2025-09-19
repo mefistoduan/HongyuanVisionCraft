@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{#if seo}}{{seo.description}}{{else}}Smart Rendering, Local Empowerment, Precisely Presenting Every Design Detail - Hongyuan VisionCraft specializes in AI architectural rendering localization services.{{/if}}">
+    <meta name="keywords" content="{{#if seo}}{{seo.keywords}}{{else}}AI rendering, architectural visualization, local deployment, computer vision, generative AI, Hongyuan VisionCraft{{/if}}">
+    <meta name="author" content="{{#if seo}}{{seo.author}}{{else}}Hongyuan VisionCraft{{/if}}">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{#if seo}}{{seo.title}}{{else}}{{siteInfo.title}}{{/if}}">
+    <meta property="og:description" content="{{#if seo}}{{seo.description}}{{else}}Smart Rendering, Local Empowerment, Precisely Presenting Every Design Detail - Hongyuan VisionCraft specializes in AI architectural rendering localization services.{{/if}}">
+    <meta property="og:image" content="{{#if seo}}{{seo.image}}{{else}}/images/og-image.jpg{{/if}}">
+    <meta property="og:url" content="{{#if seo}}{{seo.url}}{{else}}https://visioncraft.qzz.io{{/if}}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{siteInfo.title}}">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{#if seo}}{{seo.title}}{{else}}{{siteInfo.title}}{{/if}}">
+    <meta name="twitter:description" content="{{#if seo}}{{seo.description}}{{else}}Smart Rendering, Local Empowerment, Precisely Presenting Every Design Detail - Hongyuan VisionCraft specializes in AI architectural rendering localization services.{{/if}}">
+    <meta name="twitter:image" content="{{#if seo}}{{seo.image}}{{else}}/images/twitter-image.jpg{{/if}}">
+    
+    <link rel="canonical" href="{{#if seo}}{{seo.url}}{{else}}https://visioncraft.qzz.io{{/if}}">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>{{#if seo}}{{seo.title}}{{else}}{{siteInfo.title}}{{/if}}</title>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="container nav-container">
+                <a href="/" class="logo"><span>{{siteInfo.title}} </span></a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {{{body}}}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">{{siteInfo.title}} <span>VisionCraft</span></div>
+                    <p>{{siteInfo.footerText}}</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p>Email: <a href="mailto:{{contact.email}}">{{contact.email}}</a></p>
+                    <p>Website: <a href="https://{{contact.website}}" target="_blank">{{contact.website}}</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{year}} {{siteInfo.title}}. All rights reserved.</p>
+                <p>{{siteInfo.footerSlogan}}</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/image-compare.js"></script>
+  </body>
+</html>
