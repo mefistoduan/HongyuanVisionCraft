@@ -8,7 +8,7 @@ async function bootstrap() {
     app.setBaseViewsDir((0, path_1.join)(__dirname, '..', 'views'));
     app.setViewEngine('hbs');
     app.useStaticAssets((0, path_1.join)(__dirname, '..', 'public'));
-    await app.listen(process.env.PORT ?? 3000);
+    await app.listen(process.env.PORT ?? 3003);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

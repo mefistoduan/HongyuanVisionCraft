@@ -1,4 +1,4 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Render, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -14,7 +14,8 @@ export class AppController {
       advantages: this.appService.getTechnicalAdvantages(),
       values: this.appService.getCustomerValue(),
       contact: this.appService.getContactInfo(),
-      seo: this.appService.getSeoInfo('home')
+      seo: this.appService.getSeoInfo('home'),
+      year: new Date().getFullYear()
     };
   }
 
@@ -25,7 +26,8 @@ export class AppController {
       siteInfo: this.appService.getSiteInfo(),
       about: this.appService.getAboutUs(),
       contact: this.appService.getContactInfo(),
-      seo: this.appService.getSeoInfo('about')
+      seo: this.appService.getSeoInfo('about'),
+      year: new Date().getFullYear()
     };
   }
 
@@ -35,14 +37,16 @@ export class AppController {
     return {
       siteInfo: this.appService.getSiteInfo(),
       contact: this.appService.getContactInfo(),
-      seo: this.appService.getSeoInfo('contact')
+      seo: this.appService.getSeoInfo('contact'),
+      year: new Date().getFullYear()
     };
   }
 
   @Get('sitemap.xml')
   @Render('sitemap')
-  getSitemap() {
-    // 确保返回XML内容类型
+  getSitemap(@Res() res) {
+    // 设置正确的Content-Type
+    res.set('Content-Type', 'application/xml');
     return {
       url: 'https://visioncraft.qzz.io',
       lastmod: new Date().toISOString().split('T')[0]
@@ -51,7 +55,9 @@ export class AppController {
 
   @Get('robots.txt')
   @Render('robots')
-  getRobots() {
+  getRobots(@Res() res) {
+    // 设置正确的Content-Type
+    res.set('Content-Type', 'text/plain');
     return { url: 'https://visioncraft.qzz.io' };
   }
 }

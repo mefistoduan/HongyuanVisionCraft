@@ -26,17 +26,16 @@ export declare class AppController {
         };
         seo: {
             author: string;
-            keywords: string;
             image: string;
             url: string;
-        } | {
-            author: string;
-            keywords: string;
-            image: string;
-            url: string;
+            twitterCard: string;
+            twitterSite: string;
+            twitterCreator: string;
             title: string;
             description: string;
+            keywords: string;
         };
+        year: number;
     };
     getAbout(): {
         siteInfo: {
@@ -54,17 +53,16 @@ export declare class AppController {
         };
         seo: {
             author: string;
-            keywords: string;
             image: string;
             url: string;
-        } | {
-            author: string;
-            keywords: string;
-            image: string;
-            url: string;
+            twitterCard: string;
+            twitterSite: string;
+            twitterCreator: string;
             title: string;
             description: string;
+            keywords: string;
         };
+        year: number;
     };
     getContact(): {
         siteInfo: {
@@ -78,23 +76,22 @@ export declare class AppController {
         };
         seo: {
             author: string;
-            keywords: string;
             image: string;
             url: string;
-        } | {
-            author: string;
-            keywords: string;
-            image: string;
-            url: string;
+            twitterCard: string;
+            twitterSite: string;
+            twitterCreator: string;
             title: string;
             description: string;
+            keywords: string;
         };
+        year: number;
     };
-    getSitemap(): {
+    getSitemap(res: any): {
         url: string;
         lastmod: string;
     };
-    getRobots(): {
+    getRobots(res: any): {
         url: string;
     };
 }

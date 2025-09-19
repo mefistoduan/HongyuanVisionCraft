@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Viewport and Browser Compatibility -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Performance and SEO Optimization -->
+    <meta name="google" content="nositelinkssearchbox">
+    <meta name="googlebot" content="notranslate">
+    <meta name="robots" content="index, follow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="description" content="{{#if seo}}{{seo.description}}{{else}}Smart Rendering, Local Empowerment, Precisely Presenting Every Design Detail - Hongyuan VisionCraft specializes in AI architectural rendering localization services.{{/if}}">
     <meta name="keywords" content="{{#if seo}}{{seo.keywords}}{{else}}AI rendering, architectural visualization, local deployment, computer vision, generative AI, Hongyuan VisionCraft{{/if}}">
     <meta name="author" content="{{#if seo}}{{seo.author}}{{else}}Hongyuan VisionCraft{{/if}}">
@@ -11,15 +18,22 @@
     <meta property="og:title" content="{{#if seo}}{{seo.title}}{{else}}{{siteInfo.title}}{{/if}}">
     <meta property="og:description" content="{{#if seo}}{{seo.description}}{{else}}Smart Rendering, Local Empowerment, Precisely Presenting Every Design Detail - Hongyuan VisionCraft specializes in AI architectural rendering localization services.{{/if}}">
     <meta property="og:image" content="{{#if seo}}{{seo.image}}{{else}}/images/og-image.jpg{{/if}}">
+    <meta property="og:image:alt" content="Hongyuan VisionCraft Logo - AI Architectural Rendering">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="{{#if seo}}{{seo.url}}{{else}}https://visioncraft.qzz.io{{/if}}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{siteInfo.title}}">
+    <meta property="og:locale" content="en_US">
     
     <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="{{#if seo.twitterCard}}{{seo.twitterCard}}{{else}}summary_large_image{{/if}}">
+    <meta name="twitter:site" content="{{#if seo.twitterSite}}{{seo.twitterSite}}{{else}}@HongyuanVision{{/if}}">
+    <meta name="twitter:creator" content="{{#if seo.twitterCreator}}{{seo.twitterCreator}}{{else}}@HongyuanVision{{/if}}">
     <meta name="twitter:title" content="{{#if seo}}{{seo.title}}{{else}}{{siteInfo.title}}{{/if}}">
     <meta name="twitter:description" content="{{#if seo}}{{seo.description}}{{else}}Smart Rendering, Local Empowerment, Precisely Presenting Every Design Detail - Hongyuan VisionCraft specializes in AI architectural rendering localization services.{{/if}}">
     <meta name="twitter:image" content="{{#if seo}}{{seo.image}}{{else}}/images/twitter-image.jpg{{/if}}">
+    <meta name="twitter:image:alt" content="Hongyuan VisionCraft Logo - AI Architectural Rendering">
     
     <link rel="canonical" href="{{#if seo}}{{seo.url}}{{else}}https://visioncraft.qzz.io{{/if}}">
     <link rel="stylesheet" href="/css/main.css">
@@ -69,7 +83,7 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; {{year}} {{siteInfo.title}}. All rights reserved.</p>
-                <p>{{siteInfo.footerSlogan}}</p>
+                <p>{{siteInfo.slogan}}</p>
             </div>
         </div>
     </footer>

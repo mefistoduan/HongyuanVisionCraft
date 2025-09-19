@@ -13,6 +13,6 @@ async function bootstrap() {
   // 配置静态文件服务
   app.useStaticAssets(join(__dirname, '..', 'public'));
   
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3003);
 }
 bootstrap();

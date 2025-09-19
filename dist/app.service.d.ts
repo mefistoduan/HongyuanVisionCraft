@@ -26,15 +26,13 @@ export declare class AppService {
     };
     getSeoInfo(page: string): {
         author: string;
-        keywords: string;
         image: string;
         url: string;
-    } | {
-        author: string;
-        keywords: string;
-        image: string;
-        url: string;
+        twitterCard: string;
+        twitterSite: string;
+        twitterCreator: string;
         title: string;
         description: string;
+        keywords: string;
     };
 }

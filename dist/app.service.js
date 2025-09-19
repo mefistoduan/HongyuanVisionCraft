@@ -103,37 +103,48 @@ let AppService = class AppService {
     getSeoInfo(page) {
         const baseInfo = {
             author: 'Hongyuan VisionCraft',
-            keywords: 'AI rendering, architectural visualization, computer vision, generative AI, local deployment',
-            image: '/images/logo.png',
-            url: 'https://visioncraft.qzz.io'
+            image: '/images/image10.png',
+            url: 'https://visioncraft.qzz.io',
+            twitterCard: 'summary_large_image',
+            twitterSite: '@HongyuanVision',
+            twitterCreator: '@HongyuanVision'
         };
         switch (page) {
             case 'home':
                 return {
-                    title: 'Hongyuan VisionCraft - AI Architectural Rendering Services',
-                    description: 'Smart rendering, local empowerment, precisely presenting every design detail. We provide AI-driven architectural visualization solutions.',
+                    title: 'Hongyuan VisionCraft - AI Architectural Rendering & Visualization Services',
+                    description: 'Transform architectural visualization with our AI-driven solutions. Smart rendering, local empowerment, and precise presentation of every design detail for architects, designers, and developers.',
+                    keywords: 'AI rendering, architectural visualization, computer vision, generative AI, local deployment, architectural design, 3D rendering, smart image editing, prototype design, precise rendering',
                     ...baseInfo
                 };
             case 'about':
                 return {
-                    title: 'About Us - Hongyuan VisionCraft',
-                    description: 'Learn about our innovative enterprise focusing on AI architectural rendering localization services.',
+                    title: 'About Us - Hongyuan VisionCraft | AI Architectural Rendering Experts',
+                    description: 'Jinan Hongyuan Technology is an innovative enterprise specializing in AI architectural rendering localization services. We empower the entire architectural design process through technological breakthroughs.',
+                    keywords: 'Hongyuan VisionCraft, Jinan Hongyuan Technology, AI architectural rendering, computer vision, generative AI, innovation, professionalism, win-win, deep semantic understanding',
                     ...baseInfo
                 };
             case 'services':
                 return {
-                    title: 'Our Services - Hongyuan VisionCraft',
-                    description: 'Explore our AI-driven services including prototype design, precise rendering, and more for architectural visualization.',
+                    title: 'Our Services - AI Architectural Visualization Solutions | Hongyuan VisionCraft',
+                    description: 'Explore our comprehensive AI-driven services including prototype design, precise rendering, local repainting, seasonal weather simulation, and more for architectural visualization needs.',
+                    keywords: 'AI services, architectural visualization, prototype design, precise rendering, local repainting, seasonal weather simulation, intelligent image expansion, smart image editing, line art extraction',
                     ...baseInfo
                 };
             case 'contact':
                 return {
-                    title: 'Contact Us - Hongyuan VisionCraft',
-                    description: 'Get in touch with us for AI architectural rendering solutions and services.',
+                    title: 'Contact Us - Hongyuan VisionCraft | AI Rendering Solutions',
+                    description: 'Get in touch with our team of AI architectural rendering experts. Contact us for innovative visualization solutions tailored to your architectural design needs.',
+                    keywords: 'contact Hongyuan VisionCraft, AI architectural rendering, architectural visualization, contact us, inquiry, support, consultation',
                     ...baseInfo
                 };
             default:
-                return baseInfo;
+                return {
+                    title: 'Hongyuan VisionCraft - AI Architectural Rendering Services',
+                    description: 'Smart rendering, local empowerment, precisely presenting every design detail with AI-driven architectural visualization solutions.',
+                    keywords: 'AI rendering, architectural visualization, computer vision, generative AI, local deployment',
+                    ...baseInfo
+                };
         }
     }
 };
