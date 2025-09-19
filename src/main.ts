@@ -13,6 +13,10 @@ async function bootstrap() {
   // 配置静态文件服务
   app.useStaticAssets(join(__dirname, '..', 'public'));
   
-  await app.listen(process.env.PORT ?? 3003);
+  // 让系统自动分配可用端口，如果有环境变量则使用环境变量中的端口
+  const server = await app.listen(process.env.PORT ?? 0);
+  const address = server.address();
+  const port = typeof address === 'string' ? address : address?.port;
+  console.log(`Application is running on port: ${port}`);
 }
 bootstrap();
