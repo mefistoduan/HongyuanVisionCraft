@@ -38,10 +38,5 @@
         "Access-Control-Allow-Origin": "*"
       }
     }
-  ],
-  "includeFiles": [
-    "dist/**",
-    "views/**",
-    "public/**"
   ]
 }

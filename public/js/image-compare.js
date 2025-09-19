@@ -12,12 +12,27 @@ function initImageCompare() {
         
         // 设置初始状态
         let isDragging = false;
-        let containerWidth = container.offsetWidth;
+        let containerWidth = 0;
         
-        // 初始化显示效果 - 使用clip-path替代改变宽度
-        beforeImg.style.width = '100%'; // 保持图片宽度不变
-        beforeImg.style.clipPath = 'inset(0 50% 0 0)'; // 初始裁剪为显示左半部分
-        handle.style.left = '50%';
+        // 确保容器尺寸正确初始化的函数
+        function initializeDimensions() {
+            containerWidth = container.offsetWidth;
+            // 只有在容器宽度有效时才设置显示效果
+            if (containerWidth > 0) {
+                // 初始化显示效果 - 使用clip-path替代改变宽度
+                beforeImg.style.width = '100%'; // 保持图片宽度不变
+                beforeImg.style.clipPath = 'inset(0 50% 0 0)'; // 初始裁剪为显示左半部分
+                handle.style.left = '50%';
+            }
+        }
+        
+        // 尝试立即初始化
+        initializeDimensions();
+        
+        // 如果首次初始化失败，尝试在短暂延迟后再次初始化
+        if (containerWidth <= 0) {
+            setTimeout(initializeDimensions, 100);
+        }
         
         // 处理鼠标/触摸事件
         function moveSlider(e) {
@@ -129,6 +144,16 @@ function initImageCompare() {
         
         window.addEventListener('resize', handleResize);
         
+        // 添加ResizeObserver来监视容器大小变化
+        if (window.ResizeObserver) {
+            const resizeObserver = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    handleResize();
+                }
+            });
+            resizeObserver.observe(container);
+        }
+        
         // 为了更好的用户体验，设置鼠标样式
         slider.style.cursor = 'ew-resize';
         handle.style.cursor = 'ew-resize';
@@ -136,9 +161,20 @@ function initImageCompare() {
 }
 
 // 当文档加载完成后初始化图像对比功能
+function initializeImageCompareWhenReady() {
+    // 尝试初始化
+    initImageCompare();
+    
+    // 为确保所有图像加载完成，添加额外的初始化
+    window.addEventListener('load', () => {
+        // 延迟一小段时间以确保布局完全稳定
+        setTimeout(initImageCompare, 300);
+    });
+}
+
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initImageCompare);
+    document.addEventListener('DOMContentLoaded', initializeImageCompareWhenReady);
 } else {
     // 如果DOM已经加载完成，立即初始化
-    initImageCompare();
+    initializeImageCompareWhenReady();
 }
