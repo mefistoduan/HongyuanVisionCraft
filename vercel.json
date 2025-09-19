@@ -1,23 +1,15 @@
 {
   "version": 2,
+  "buildCommand": "pnpm run build",
+  "installCommand": "pnpm install",
+  "outputDirectory": "dist",
   "builds": [
     {
-      "src": "src/main.ts",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["dist/**", "views/**", "public/**"]
-      }
+      "src": "dist/main.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
-    {
-      "src": "^/sitemap.xml$",
-      "dest": "src/main.ts"
-    },
-    {
-      "src": "^/robots.txt$",
-      "dest": "src/main.ts"
-    },
     {
       "src": "^/css/(.*)$",
       "dest": "public/css/$1"
@@ -31,12 +23,25 @@
       "dest": "public/images/$1"
     },
     {
+      "src": "^/sitemap.xml$",
+      "dest": "dist/main.js"
+    },
+    {
+      "src": "^/robots.txt$",
+      "dest": "dist/main.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "src/main.ts",
+      "dest": "dist/main.js",
       "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Origin": "*"
       }
     }
+  ],
+  "includeFiles": [
+    "dist/**",
+    "views/**",
+    "public/**"
   ]
 }
